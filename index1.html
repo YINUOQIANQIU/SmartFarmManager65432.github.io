@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧农业管理系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://imgur.la/images/2024/12/11/A38DFE2B998D7FDA3F0157370C84D6B3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: #4FE1A0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: relative;
+            transition: transform 0.3s, background 0.3s;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content .nav-link {
+            display: block;
+            margin: 0;
+            padding: 10px 15px;
+        }
+
+        .carousel-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .carousel {
+            width: 50%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative; /* Necessary for absolute positioning of content */
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #4FE1A0;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 1em;
+            border: 2px solid #4FE1A0;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .search-box button {
+            padding: 10px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background: #4FE1A0;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .button {
+            background-color: rgba(79, 225, 160, 0.6);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(79, 225, 160, 1);
+        }
+
+        .weather-card, .data-chart {
+            width: 24%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .weather-card h2, .data-chart h2 {
+            color: #4FE1A0;
+            margin-bottom: 10px;
+        }
+
+        .weather-card p, .data-chart p {
+            font-size: 1em;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-section {
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .info-item {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-item h3 {
+            color: #4FE1A0;
+            margin-bottom: 10px;
+        }
+
+        .info-item p {
+            font-size: 1em;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">智慧农业管理系统</div>
+        <div class="nav">
+            <a href="./index1.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+            <a href="./about.html" class="nav-link"><i class="fas fa-info-circle"></i> 关于我们</a>
+            <div class="dropdown">
+                <a href="javascript:void(0);" class="nav-link"><i class="fas fa-wrench"></i> 服务</a>
+                <div class="dropdown-content">
+                    <a href="./index2.html" class="nav-link"><i class="fas fa-chart-bar"></i> 数据洞察</a>
+                    <a href="./data_forecast.html" class="nav-link"><i class="fas fa-chart-line"></i> 趋势预测</a>
+                </div>
+            </div>
+            <a href="./products.html" class="nav-link"><i class="fas fa-cube"></i> 产品</a>
+            <a href="./company.html" class="nav-link"><i class="fas fa-building"></i> 公司</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="carousel-container">
+        <div class="weather-card">
+            <h2>天气预报</h2>
+            <p><i class="fas fa-sun"></i> 天气晴朗</p>
+            <p><i class="fas fa-thermometer-half"></i> 温度：22°C</p>
+            <p><i class="fas fa-tint"></i> 湿度：50%</p>
+            <p><i class="fas fa-wind"></i> 风速：10 km/h</p>
+            <p><i class="fas fa-cloud"></i> 云量：20%</p>
+        </div>
+        <div class="carousel">
+            <div class="slides">
+                <div class="slide">
+                    <div class="content">
+                        <h1>欢迎进入智慧农业管理系统，您的农业智能伙伴在这里！</h1>
+                        <p>我们将用数据点亮农田，用智慧引领丰收。让我们一起开启高效、精准的农业新时代。</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://imgur.la/images/2024/12/12/48a9bbbf8f539066758e9d48ef8e1c6e.jpg" alt="Slide 1" />
+                </div>
+                <div class="slide">
+                    <img src="https://imgur.la/images/2024/12/12/770ab7cca07bf77dcee6b98369b482c2.jpeg" alt="Slide 2" />
+                </div>
+                <div class="slide">
+                    <img src="https://imgur.la/images/2024/12/12/B58971B67E942890492003F1C5DAFA09.jpg" alt="Slide 3" />
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="button" id="prevBtn">❮</button>
+                <button class="button" id="nextBtn">❯</button>
+            </div>
+        </div>
+        <div class="data-chart">
+            <h2>数据变化</h2>
+            <div class="chart-container">
+                <div class="chart-placeholder">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <p>这是过去一周的作物生长情况数据变化。</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-item">
+            <h3>土壤湿度</h3>
+            <p><i class="fas fa-tint"></i> 当前湿度：55%</p>
+        </div>
+        <div class="info-item">
+            <h3>光照强度</h3>
+            <p><i class="fas fa-sun"></i> 当前光照：800 lux</p>
+        </div>
+        <div class="info-item">
+            <h3>二氧化碳浓度</h3>
+            <p><i class="fas fa-gas-pump"></i> 当前浓度：400 ppm</p>
+        </div>
+        <div class="info-item">
+            <h3>病虫害检测</h3>
+            <p><i class="fas fa-bug"></i> 最近检测：无异常</p>
+        </div>
+        <div class="info-item">
+            <h3>温度监控</h3>
+            <p><i class="fas fa-temperature-high"></i> 当前温度：22°C</p>
+        </div>
+        <div class="info-item">
+            <h3>灌溉状态</h3>
+            <p><i class="fas fa-droplet"></i> 状态：正常</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlides() {
+            slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+        }
+
+        const nextButton = document.getElementById('nextBtn');
+        const prevButton = document.getElementById('prevBtn');
+
+        nextButton.addEventListener('click', () => {
+            slideIndex++;
+            if (slideIndex >= totalSlides) slideIndex = 0;
+            showSlides();
+        });
+
+        prevButton.addEventListener('click', () => {
+            slideIndex--;
+            if (slideIndex < 0) slideIndex = totalSlides - 1;
+            showSlides();
+        });
+
+        function autoPlay() {
+            slideIndex++;
+            if (slideIndex >= totalSlides) slideIndex = 0;
+            showSlides();
+        }
+
+        setInterval(autoPlay, 3000); // 每3秒自动切换到下一张幻灯片
+
+        // Chart.js setup
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                datasets: [{
+                    label: '作物生长情况',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: '#4FE1A0',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+

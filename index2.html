@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧农业管理系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://imgur.la/images/2024/12/11/A38DFE2B998D7FDA3F0157370C84D6B3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: #4FE1A0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background 0.3s;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-top: 80px;
+            max-width: 800px;
+            padding: 0 20px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .data-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(79, 225, 160, 0.8);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .data-btn:hover {
+            background: rgba(79, 225, 160, 1);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">智慧农业管理系统</div>
+        <div class="nav">
+            <a href="./index1.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+            <a href="./about.html" class="nav-link"><i class="fas fa-info-circle"></i> 关于我们</a>
+            <div class="dropdown">
+                <a href="javascript:void(0);" class="nav-link"><i class="fas fa-wrench"></i> 服务</a>
+                <div class="dropdown-content">
+                    <a href="./index2.html" class="nav-link"><i class="fas fa-chart-bar"></i> 数据洞察</a>
+                    <a href="./data_forecast.html" class="nav-link"><i class="fas fa-chart-line"></i> 趋势预测</a>
+                </div>
+            </div>
+            <a href="./products.html" class="nav-link"><i class="fas fa-cube"></i> 产品</a>
+            <a href="./company.html" class="nav-link"><i class="fas fa-building"></i> 公司</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    <div class="content">
+        <!-- 添加一个新的按钮来打开 volume rendering -->
+        <button class="data-btn" onclick="window.open('./output_frames/index3.html', '_blank', 'opener=yes')">数据分析</button>
+    </div>
+</body>
+
+</html>
